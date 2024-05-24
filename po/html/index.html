@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <!--    <link rel="icon" href="favicon.png">-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <style type="text/css">
+        /* Required for proper centering */
+        html, body{
+            height:100vh;
+            width:100vw;
+        }
+        .clone {
+            display: none;
+        }
+        #overlay{
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            height:100%;
+            display: none;
+            background: rgba(21,22,28,0.6);
+        }
+        .cv-spinner {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px #ddd solid;
+            border-top: 4px #2e93e6 solid;
+            border-radius: 50%;
+            animation: sp-anime 0.8s infinite linear;
+        }
+        @keyframes sp-anime {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .is-hide{
+            display:none;
+        }.frame {
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             width: 400px;
+             height: 400px;
+             margin-top: -200px;
+             margin-left: -200px;
+             border-radius: 200px;
+             box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
+             overflow: hidden;
+             background: #363847;
+             color: #fff;
+             font-family: "Open Sans", Helvetica, sans-serif;
+             -webkit-font-smoothing: antialiased;
+             -moz-osx-font-smoothing: grayscale;
+         }
+        .eye {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 160px;
+            height: 160px;
+            border-radius: 160px 0;
+            background: #D8D8D8;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+        .eye .ball {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #fff;
+            top: 25px;
+            left: 25px;
+            -webkit-animation: ball 5s ease-in-out infinite;
+            animation: ball 5s ease-in-out infinite;
+        }
+        .eye .ball .iris {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #617983;
+            top: 37px;
+            left: 37px;
+        }
+        .lid {
+            fill: #363847;
+            stroke: none;
+        }
+        .lid-top {
+            position: absolute;
+            z-index: 2;
+            width: 240px;
+            height: 106px;
+            top: 125px;
+            left: 80px;
+            transform: translateY(-60px);
+            -webkit-animation: lid-top 5s ease-in-out infinite;
+            animation: lid-top 5s ease-in-out infinite;
+        }
+        .lid-bottom {
+            position: absolute;
+            z-index: 2;
+            width: 240px;
+            height: 106px;
+            bottom: 125px;
+            left: 80px;
+            transform: rotate(180deg) translateY(-60px);
+            -webkit-animation: lid-bottom 5s ease-in-out infinite;
+            animation: lid-bottom 5s ease-in-out infinite;
+        }
+        .frame:hover .lid-top {
+            transform: translateY(0);
+        }
+        .frame:hover .lid-bottom {
+            transform: rotate(180deg) translateY(0);
+        }
+        @-webkit-keyframes lid-top {
+            0%, 10%, 18%, 26%, 34%, 48%, 56%, 76%, 84% {
+                transform: translateY(-60px);
+            }
+            14%, 30%, 52%, 80% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes lid-top {
+            0%, 10%, 18%, 26%, 34%, 48%, 56%, 76%, 84% {
+                transform: translateY(-60px);
+            }
+            14%, 30%, 52%, 80% {
+                transform: translateY(0);
+            }
+        }
+        @-webkit-keyframes lid-bottom {
+            0%, 10%, 18%, 26%, 34%, 48%, 56%, 76%, 84% {
+                transform: rotate(180deg) translateY(-60px);
+            }
+            14%, 30%, 52%, 80% {
+                transform: rotate(180deg) translateY(0);
+            }
+        }
+        @keyframes lid-bottom {
+            0%, 10%, 18%, 26%, 34%, 48%, 56%, 76%, 84% {
+                transform: rotate(180deg) translateY(-60px);
+            }
+            14%, 30%, 52%, 80% {
+                transform: rotate(180deg) translateY(0);
+            }
+        }
+        @-webkit-keyframes ball {
+            0%, 14%, 56% {
+                transform: rotate(-45deg) translateX(0);
+            }
+            18%, 30% {
+                transform: rotate(-45deg) translate(-25px, 5px) scale(0.9);
+            }
+            34%, 52% {
+                transform: rotate(-45deg) translate(25px, 10px) scale(0.9);
+            }
+        }
+        @keyframes ball {
+            0%, 14%, 56% {
+                transform: rotate(-45deg) translateX(0);
+            }
+            18%, 30% {
+                transform: rotate(-45deg) translate(-25px, 5px) scale(0.9);
+            }
+            34%, 52% {
+                transform: rotate(-45deg) translate(25px, 10px) scale(0.9);
+            }
+        }
+    </style>
+    <!-- tinymce -->
+    <script src="https://cdn.tiny.cloud/1/acvl14wmvweoakatloipgcv5srv0jz13ton8qz6bfvau3zu2/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/?">
+            <img src="images/logo.500w.png" alt="" width="150">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-section" aria-controls="nav-section" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav-section">
+            <ul class="pocket form-nav navbar-nav me-auto mb-2 mb-lg-0" id="navbarNav" data-items="footernav"></ul>
+        </div>
+    </div>
+</nav>
+
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <div id="main-section" class="col col-xl-4 col-lg-5 col-md-6 col-sm-9 align-self-center m-3">
+        <div class="pocket form" data-items="main" data-override-main="/Forms/login"></div>
+    </div>
+</div>
+
+<div id="generic-modal" class="modal" tabindex="-1" style="display: none">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-light"></h5>
+                <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer"></div>
+            <div class="position-fixed bottom-0 end-0 p-3 pb-0">
+                <div id="msg-section-modal" class="col mt-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="overlay">
+    <div class="frame">
+        <div class="eye">
+            <div class="ball">
+                <div class="iris"></div>
+            </div>
+        </div>
+        <div class="lid-top">
+            <svg width="240px" height="106px" viewBox="0 0 240 106">
+                <path d="M239.461093,106 L240,106 L240,0 L0,0 L0,106 L0.538906982,106 C5.9904782,95.5378089 52.3717687,81 120,81 C187.628231,81 234.009522,95.5378089 239.461093,106 Z" class="lid"></path>
+            </svg>
+        </div>
+        <div class="lid-bottom">
+            <svg width="240px" height="106px" viewBox="0 0 240 106">
+                <path d="M239.461093,106 L240,106 L240,0 L0,0 L0,106 L0.538906982,106 C5.9904782,95.5378089 52.3717687,81 120,81 C187.628231,81 234.009522,95.5378089 239.461093,106 Z" class="lid"></path>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3 pb-0">
+    <div id="msg-section" class="col mt-4"></div>
+</div>
+
+<items style="display: none">
+    <item id="default">Loading...</item>
+    <item id="popup">
+        <div class="ratio ratio-1x1">
+            <iframe src="" title="popup" allowfullscreen></iframe>
+        </div>
+    </item>
+    <item id="demo">
+        <h2>Center This Text (Even if Wrapped) in all Viewport Sizes</h2>
+    </item>
+    <item id="dataEntryPatient">
+        <div class="pockext" data-html="/Forms/data.entry.patient"></div>
+    </item>
+    <item id="terminalProxy">
+        <div class="modal-body pocketx" data-items="terminal" data-override-terminal="/Forms/terminal.proxy?amount=399.99&itemDesc=Semaglutide"></div>
+    </item>
+    <item id="footernav">
+        <li class="nav-item">
+            <a href="/Forms/login" class="nav-link" data-name="auth">Login</a>
+        </li>
+        <li class="nav-item">
+            <a href="/Forms/signup?formKey=V1RvbEN0VHp0WWd4U2FGZ1pLa2dIQT09Ojo2syMLPVKMrekkaK0gWLoc" class="nav-link" data-name="auth">Signup</a>
+        </li>
+    </item>
+    <item id="steps">
+        <div class="container">
+            <!--            <div class="row">-->
+            <!--                <div class="col-12">-->
+            <!--                    <h2>Available Steps</h2>-->
+            <!--                </div>-->
+            <!--                <div class="col-12">-->
+            <!--                    <div class="btn-group btn-group-sm float-end" role="group">-->
+            <!--                        <a href="/Forms/payopts.step" class="btn btn-sm btn-light logged-in payopts" data-name="payopts-step"><i class="fa fa-plus"></i> New</a>-->
+            <!--                        <a href="/Sequence/getSteps" class="btn btn-sm btn-light" data-pocket=".main-section" data-reset="true" data-items="steps"><i class="fas fa-sync-alt"></i> Reload</a>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <div class="row row-cols-1 g-2 clone" data-data-source="/Sequence/getSteps">
+                <div class="col">
+                    <div class="card">
+                        <div class="text-primary card-header bg-light">
+                            <h5 class="card-title mt-2">
+                                <span class="fs-6">{{aug:index}}</span>
+                                {{rec:udName}}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="card-text">Action : <span class="text-uppercase">{{rec:action}}</span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Type : <up name="type"></up><span class="text-uppercase fw-bold">{{rec:type}}</span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Frequency : {{rec:frequency}} {{rec:frequencyLength}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Code : {{rec:stepCd}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Max Attempts : {{rec:maxAttempts}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Created : {{rec:dateCreate}}</p>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <span class="fw-bold text-dark">Supplemental Requirements</span>
+                                    <p class="fs-6 fw-light fst-italic info">
+                                        {{rec:allParamNames}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-sm float-end" role="group">
+                                <a href="/Forms/payopts.step" class="btn btn-sm btn-light logged-in payopts" data-name="payopts-step"><i class="fa fa-plus"></i> New</a>
+                                <button class="btn btn-sm btn-light">View</button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+    <item id="categories">
+        <div class="container">
+            <div class="row row-cols-1 g-2 clone" data-data-source="/Backend/getStoredData/which/category">
+                <div class="col">
+                    <div class="card">
+                        <div class="text-light card-header bg-primary">
+                            <h5 class="card-title mt-2">
+                                <span class="fs-6">{{aug:index}}</span>
+                                {{rec:name}}
+                            </h5>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-sm float-end" role="group"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+    <item id="products">
+        <div class="container">
+            <div class="row row-cols-1 g-2 clone" data-data-source="/Backend/getStoredData/which/product">
+                <div class="col">
+                    <div class="card">
+                        <div class="text-light card-header bg-primary">
+                            <h5 class="card-title mt-2">
+                                <span class="fs-6">{{aug:index}}</span>
+                                {{rec:name}}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="card-text">{{rec:description}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Price: ${{rec:price}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Cost: ${{rec:cost}}/{{rec:costPer}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Taxable: {{rec:isTaxable}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Dropship: {{rec:isDropship}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Active: {{rec:isActive}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-sm float-end" role="group"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+    <item id="individual-report" data-callback="individualReportCleanup">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 clone" data-data-source="/Backend/getStoredData/which/individual">
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="text-dark card-header bg-light">
+                            <span class="fa-pull-right ms-3"><i class="far fa-fw fa-credit-card text-light"></i></span>
+                            <h5 class="card-title">
+                                #{{aug:index}}
+                                <span>{{rec:name}}</span>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="card-text">Order Date : <span class="f-date-time">{{rec:dateOrdered}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Email : <span class="f-email">{{rec:email}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Email : <span class="f-email">{{rec:email2}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Phone : <span class="f-phone">{{rec:phone}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Phone : <span class="f-phone">{{rec:phone2}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Acct# : <span class="account-no fw-light fs-6"></span></p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-group mt-2">
+                                        <select class="form-select sequence-list"></select>
+                                        <button class="btn btn-light btn-outline-secondary sequence-trigger" type="button">Trigger</button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text f-address"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-black-50">
+                            <span class="fs-6 f-money" data-f-clue="$">{{rec:total}}</span>
+                            <a href="/Backend/archiveStoredData" title="Archive and Remove" class="fa-pull-right archive-record ms-3"><i class="fas fa-fw fa-trash-alt text-black-50"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+    <item id="sequences-report" data-callback="sequencesReportCleanup">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 clone" data-data-source="/Backend/getStoredData/which/payopts-individual">
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="text-dark card-header bg-light">
+                            <a href="/Backend/buildPayOpt" title="Add Sequence to Account" class="fa-pull-right ms-3"><i class="fas fa-fw fa-th-large text-dark" style="opacity: 0.2;"></i></a>
+                            <a href="{{rec:link}}&report=static" title="Report on Sequence" class="fa-pull-right ms-3"><i class="far fa-fw fa-question-circle text-info"></i></a>
+                            <span class="fa-pull-right ms-3"><i class="far fa-fw fa-credit-card text-light"></i></span>
+                            <h5 class="card-title">
+                                #{{aug:index}}
+                                <span class="data-name"></span>
+                                <span class="fs-6 data-account"></span>
+                                <span class="fs-6 data-nameFirst"></span>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="card-text">
+                                        <span class="text-uppercase fw-bold">Sequence Goal : {{rec:objective}}</span>
+                                        <br>
+                                        <span class="text-uppercase">Payments to Date : <span class="fw-bold">${{rec:amountPaid}}</span>
+                                            @ <span class="data-amount"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Start : <span class="f-date-time" data-f-default="-">{{rec:dateCommence}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Complete : <span class="f-date-time" data-f-default="-">{{rec:dateComplete}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text"><a href="{{rec:link}}" class="btn btn-sm btn-light ps-1 pe-1" target="_blank">{{rec:shortlink}}</a></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Next Trigger : <span class="f-date-time" data-f-default="-">{{rec:nextHitTs}}</span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Email : <span class="data-email"></span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">Phone : <span class="data-phone f-phone"></span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">ID : <span class="data-customerCd"></span></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text overflow-auto">Report : <span class="report"></span></p>
+                                </div>
+                                <hr class="mt-2">
+                                <div class="col-12 position-relative">
+                                    <div class="btn-group btn-group-sm top-50 start-50 translate-middle">
+                                        <a href="{{rec:link}}&unsubscribe=true" title="Unsubscribe from Payopts" class="btn btn-light btn-outline-secondary unsubscribe-payopts text-dark"><i class="fas fa-fw fa-at"></i> Unsub</a>
+                                        <a href="{{rec:link}}&cancel={{rec:account}}" title="Cancel Sequence" class="btn btn-light btn-outline-secondary cancel-sequence text-danger"><i class="far fa-fw fa-times-circle"></i> Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-black-50">
+                            <div>Sequence : {{rec:udName}} ({{rec:sequenceCd}})</div>
+                            <a href="/Backend/archiveStoredData" title="Archive and Remove" class="fa-pull-right archive-record ms-3"><i class="fas fa-fw fa-trash-alt text-black-50 remove-sequence"></i></a>
+                            <div class="fw-bold">Result : <span class="result"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+    <item id="vendors">
+        <div class="container">
+            <div class="row row-cols-1 g-2 clone" data-data-source="/Backend/getStoredData/which/vendor">
+                <div class="col">
+                    <div class="card">
+                        <div class="text-light card-header bg-primary">
+                            <h5 class="card-title mt-2">
+                                <span class="fs-6">{{aug:index}}</span>
+                                {{rec:company}}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="card-text">{{rec:contact}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:email}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:email2}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:phone}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:phone2}}</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">{{rec:website}}</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">{{rec:notes}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-sm float-end" role="group"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+    <item id="clients">
+        <div class="container">
+            <div class="row row-cols-3 g-2 clone" data-data-source="/Backend/getStoredData/which/client">
+                <div class="col">
+                    <div class="card">
+                        <div class="text-light card-header bg-primary">
+                            <h5 class="card-title mt-2">
+                                <span class="fs-6">{{aug:index}}</span>
+                                {{rec:company}}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="card-text">{{rec:contactLastName}}, {{rec:contactName}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:email}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:email2}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:phone}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">{{rec:phone2}}</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text"><a href="{{rec:website}}">{{rec:website}}</a></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text"><a href="{{rec:repoUrl}}">{{rec:repoUrl}}</a></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text">{{rec:notes}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-sm float-end" role="group"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+    <item id="sequences">
+        <div class="container">
+            <!--            <div class="row">-->
+            <!--                <div class="col-12">-->
+            <!--                    <h2>Available Sequences</h2>-->
+            <!--                </div>-->
+            <!--                <div class="col-12">-->
+            <!--                    <div class="btn-group btn-group-sm float-end" role="group">-->
+            <!--                        <a href="/Forms/payopts.sequence" class="btn btn-sm logged-in payopts" data-name="payopts-sequence"><i class="fa fa-plus"></i> New</a>-->
+            <!--                        <a href="/Sequence/getSequences" class="btn btn-sm btn-dark" data-pocket=".main-section" data-reset="true" data-items="sequences"><i class="fas fa-sync-alt"></i> Reload</a>-->
+            <!--                        <a href="/Sequence/batch" class="btn btn-sm btn-dark" data-items="batch"><i class="fas fa-chart-line"></i> Batch</a>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <div class="row row-cols-1 g-2 clone" data-data-source="/Sequence/getSequences">
+                <div class="col">
+                    <div class="card">
+                        <div class="text-light card-header bg-primary">
+                            <h5 class="card-title mt-2">
+                                <span class="fs-6">{{aug:index}}</span>
+                                {{rec:udName}}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="card-text">Complete : {{rec:completeCount}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Goal : <up name="objective"></up><span class="text-uppercase fw-bold">{{rec:objective}}</span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Active : {{rec:activeCount}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Steps : {{rec:stepCount}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Created : {{rec:dateCreate}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text">Code : {{rec:sequenceCd}}</p>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <span class="fw-bold text-dark">Included Steps</span>
+                                    <p class="card-text">{{rec:stepUdNames}}</p>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <span class="fw-bold text-dark">Supplemental Requirements</span>
+                                    <p class="fs-6 fw-light fst-italic info">
+                                        {{rec:allParamNames}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-sm float-end" role="group">
+                                <a href="/Forms/payopts.sequence" class="btn btn-sm logged-in payopts" data-name="payopts-sequence"><i class="fa fa-plus"></i> New</a>
+                                <button type="button" class="btn btn-dark copy-sequence-code">Copy</button>
+                                <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu bg-dark">
+                                    <li><a class="dropdown-item text-light bg-dark" onclick="strg.set('linkType',this.innerHTML); $(this).closest('div').find('.copy-sequence-code').trigger('click')" title="Sheets Formula">GOOGLE</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" onclick="strg.set('linkType',this.innerHTML); $(this).closest('div').find('.copy-sequence-code').trigger('click')" title="Backend Data">JSON</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" onclick="strg.set('linkType',this.innerHTML); $(this).closest('div').find('.copy-sequence-code').trigger('click')" title="Backend Report">XML</a></li>
+                                </ul>
+                                <button type="button" class="btn btn-light" title="Add a single account">Trigger</button>
+                                <!--                                <a href="/Forms/csvupload" class="btn btn-light" data-name="sequence" title="Activate this Sequence using a .csv file">File</a>-->
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </item>
+</items>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<!-- Custom Javascript -->
+<script src="/js/library/uxcore/index.js"></script>
+<script src="/js/payopts.flow.js"></script>
+</body>
+</html>
