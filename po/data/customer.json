@@ -1,0 +1,113 @@
+{
+    "id":null,
+    "entityIdCustomer":0,
+    "subtotal":249,
+    "taxRate":0,
+    "taxes":0,
+    "total":249,
+    "payments":0,
+    "amountDue":249,
+    "name":"ANGE RAY",
+    "email":"ange@gmail.com",
+    "email2":null,
+    "phone":"8015551212",
+    "phone2":null,
+    "dateOrdered":"2024-01-17T22:55:56+00:00",
+    "dateCompleted":null,
+    "datePayment":null,
+    "affiliateCd":null,
+    "discountCd":null,
+    "ts":1705532156,
+    "items":[
+       {
+          "id":null,
+          "idOrder":"bec5736c2e-1705532156",
+          "idProduct":[
+             {
+                "category":"aHJWTXFBdSthTFJONnc0dnhMR0FkZ1FyK0p5OXVacWNiWWJrSXhwWHFPQkdxbUUyVnpmOVdLVGhVcDdVN0c5ejZ5L0hwL1Q3U2JycDROZ2Y5dHVadVE9PTo6xmjB9gX/MLzdsFtL4EPnGQ==",
+                "cost":"149",
+                "costPer":"unit",
+                "description":"B12",
+                "descriptionXl":"",
+                "isActive":"1",
+                "isDropship":"1",
+                "isTaxable":"1",
+                "name":"SB1",
+                "price":"425",
+                "sku":"",
+                "sku8":"",
+                "vendor":"",
+                "vendorZen":"dVlyeVFzYm5aZUVtY2ZwSU5tU2JnL24waVpUbDdxNENTaHhSNzJPVis5am5VSkVPOTRhRzV6RnVQYlVBK1VTaW45WDkza2VwbWpGdnowR0JWaUh2cmc9PTo6rxeRoxtOV6qzVZl0WqYF8g==",
+                "zcd":"ef4aaa15347640172adc1ee94534a165",
+                "zen":"UlhVb2NtUW43K1hjUE55UDREd1JtbzR5cGZ5QkhaczQ0TnpLWWVBcWtueEpQZXIwUFNpU2hObXRsOURNSWFhaFJVSjRIRDJkWFBmN0VRekVSRXdhdmc9PTo6VDbiagvgzRAjVfcWnBWdWA==",
+                "zid":"28",
+                "zts":"2024-05-04 15:07:56"
+             }
+          ],
+          "idRef":[
+             {
+                "company":"Empower Pharmacy",
+                "contact":"Aaa",
+                "email":"aaa@empowerpharmacy.com",
+                "email2":"",
+                "notes":"",
+                "phone":"(346) 555-4307",
+                "phone2":"",
+                "website":"",
+                "zcd":"2c15aa770f7c41cfca5c19f7df3b14e9",
+                "zen":"dVlyeVFzYm5aZUVtY2ZwSU5tU2JnL24waVpUbDdxNENTaHhSNzJPVis5am5VSkVPOTRhRzV6RnVQYlVBK1VTaW45WDkza2VwbWpGdnowR0JWaUh2cmc9PTo6rxeRoxtOV6qzVZl0WqYF8g==",
+                "zid":"28",
+                "zts":"2024-05-04 14:56:20"
+             }
+          ],
+          "entityIdVendor":0,
+          "sku8":"",
+          "name":"ANGE RAY",
+          "volume":0,
+          "unit":"Cubic Inch",
+          "color":null,
+          "inscription":[
+             
+          ],
+          "price":249,
+          "qty":1,
+          "subtotal":249,
+          "taxes":0,
+          "total":249,
+          "isTaxable":true,
+          "isDiscountable":false,
+          "isQtyFixed":false,
+          "dateBackorder":null,
+          "dateShipped":null,
+          "dateOrdered":"2024-01-17T22:55:56+00:00",
+          "datePrinted":null,
+          "dateReceived":null,
+          "dateCanceled":null,
+          "noteCustomer":null,
+          "noteVendor":null
+       }
+    ],
+    "addresses":[
+       {
+          "id":0,
+          "entityIdCustomer":0,
+          "type":"shipping",
+          "addressee":"ANGE RAY",
+          "address":"1213 Hollowbrook Ln",
+          "address2":"",
+          "city":"Kaysville",
+          "stateCd":"UT",
+          "postalCd":"84037",
+          "countryCd":"US",
+          "latitude":null,
+          "longitude":null,
+          "isBilling":false
+       }
+    ],
+    "chats":[
+       
+    ],
+    "transactions":[
+       
+    ]
+ }
