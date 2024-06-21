@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5 ">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered text-center text-nowrap">
+          <thead>
+            <tr>
+              <th scope="col" class="sortable">Start Date </th>
+              <th scope="col" class="sortable" onclick="sortTableByColumn(1)">First Name <span class="sort-icon">⇅</span></th>
+              <th scope="col" class="sortable" onclick="sortTableByColumn(2)">Last Name <span class="sort-icon">⇅</span></th>
+              <th scope="col" class="sortable">DOB </th>
+              <th scope="col" class="sortable" onclick="sortTableByColumn(4)">Age <span class="sort-icon">⇅</span></th>
+              <th scope="col" class="sortable">Status </th>
+              <th scope="col" class="sortable">Shipping Address </th>
+              <th scope="col" class="sortable">Billing Address </th>
+              <th scope="col" class="sortable">Phone </th>
+              <th scope="col" class="sortable">Email </th>
+              <th scope="col" class="sortable">Call Notes </th>
+              <th scope="col" class="sortable">Clinic </th>
+              <th scope="col" class="sortable">Provider </th>
+              <th scope="col" class="sortable">Payment Info </th>
+              <th scope="col" class="sortable">Marketing </th>
+              <th scope="col" class="sortable">Notes </th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2023-01-01</td>
+              <td>Zob</td>
+              <td>Doe</td>
+              <td>1985-05-15</td>
+              <td>70</td>
+              <td>Active</td>
+              <td>1234 Elm St, Springfield, IL</td>
+              <td>5678 Oak St, Springfield, IL</td>
+              <td>(555) 123-4567</td>
+              <td>john.doe@example.com</td>
+              <td>Follow up on 2023-06-21</td>
+              <td>Clinic A</td>
+              <td>Dr. Smith</td>
+              <td>Credit Card</td>
+              <td>Email Newsletter</td>
+              <td>Important client</td>
+              <td><button class="btn btn-primary">View Details</button></td>
+            </tr>
+            <tr>
+              <td>2023-01-01</td>
+              <td>John</td>
+              <td>1oe</td>
+              <td>1985-05-15</td>
+              <td>38</td>
+              <td>Active</td>
+              <td>1234 Elm St, Springfield, IL</td>
+              <td>5678 Oak St, Springfield, IL</td>
+              <td>(555) 123-4567</td>
+              <td>john.doe@example.com</td>
+              <td>Follow up on 2023-06-21</td>
+              <td>Clinic A</td>
+              <td>Dr. Smith</td>
+              <td>Credit Card</td>
+              <td>Email Newsletter</td>
+              <td>Important client</td>
+              <td><button class="btn btn-primary">View Details</button></td>
+            </tr>
+
+
+
+            <!-- random users  -->
+
+
+            <tr>
+                <td>2023-02-15</td>
+                <td>Jane</td>
+                <td>Smith</td>
+                <td>1978-08-25</td>
+                <td>45</td>
+                <td>Inactive</td>
+                <td>4567 Pine St, Anytown, CA</td>
+                <td>7890 Maple Ave, Anytown, CA</td>
+                <td>(555) 987-6543</td>
+                <td>jane.smith@example.com</td>
+                <td>2023-07-10</td>
+                <td>Clinic B</td>
+                <td>Dr. Johnson</td>
+                <td>Bank Transfer</td>
+                <td>SMS Notifications</td>
+                <td>Regular client</td>
+                <td><button class="btn btn-primary">View Details</button></td>
+              </tr>
+              <tr>
+                <td>2023-03-20</td>
+                <td>Michael</td>
+                <td>Adams</td>
+                <td>1990-11-03</td>
+                <td>33</td>
+                <td>Active</td>
+                <td>7890 Cedar Ave, Metroville, TX</td>
+                <td>2345 Oak Lane, Metroville, TX</td>
+                <td>(555) 234-5678</td>
+                <td>michael.adams@example.com</td>
+                <td>2023-08-15</td>
+                <td>Clinic C</td>
+                <td>Dr. Brown</td>
+                <td>Cash</td>
+                <td>Postal Mail</td>
+                <td>New client</td>
+                <td><button class="btn btn-primary">View Details</button></td>
+              </tr>
+              <tr>
+                <td>2023-04-10</td>
+                <td>Emily</td>
+                <td>Johnson</td>
+                <td>1982-04-30</td>
+                <td>42</td>
+                <td>Inactive</td>
+                <td>3456 Beach Blvd, Rivertown, FL</td>
+                <td>6789 Hillcrest Rd, Rivertown, FL</td>
+                <td>(555) 345-6789</td>
+                <td>emily.johnson@example.com</td>
+                <td>2023-09-05</td>
+                <td>Clinic A</td>
+                <td>Dr. White</td>
+                <td>Credit Card</td>
+                <td>Email Newsletter</td>
+                <td>Regular client</td>
+                <td><button class="btn btn-primary">View Details</button></td>
+              </tr>
+              <tr>
+                <td>2023-05-05</td>
+                <td>David</td>
+                <td>Miller</td>
+                <td>1975-12-10</td>
+                <td>48</td>
+                <td>Active</td>
+                <td>8901 Main St, Smalltown, OH</td>
+                <td>1234 Broadway, Smalltown, OH</td>
+                <td>(555) 456-7890</td>
+                <td>david.miller@example.com</td>
+                <td>2023-10-20</td>
+                <td>Clinic B</td>
+                <td>Dr. Green</td>
+                <td>Bank Transfer</td>
+                <td>SMS Notifications</td>
+                <td>Important client</td>
+                <td><button class="btn btn-primary">View Details</button></td>
+              </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <nav class="mt-3">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        const table = document.querySelector('table');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        const sortTableByColumn = (colIndex) => {
+            rows.sort((a, b) => {
+                const cellA = a.children[colIndex].innerText.toLowerCase();
+                const cellB = b.children[colIndex].innerText.toLowerCase();
+                
+                // so that age column will change into number and then sorting it
+                if (colIndex === 4) {
+                    return parseInt(cellA) - parseInt(cellB);
+                }
+
+                if (cellA < cellB) return -1;
+                if (cellA > cellB) return 1;
+                return 0;
+            });
+            rows.forEach(row => tbody.appendChild(row));
+        };
+    </script>
+  </body>
+</html>
